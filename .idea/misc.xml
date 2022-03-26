@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kotlin/BT/Tuan2/week2exercise/app/src/main/res/layout/activity_onboarding_one.xml" value="0.176" />
+        <entry key="..\:/Kotlin/BT/Tuan2/week2exercise/app/src/main/res/layout/activity_onboarding_three.xml" value="0.264" />
+        <entry key="..\:/Kotlin/BT/Tuan2/week2exercise/app/src/main/res/layout/activity_onboarding_two.xml" value="0.2" />
         <entry key="..\:/Users/toanq/OneDrive/Desktop/Android/week2exercise/app/src/main/res/drawable/custom_edit_text.xml" value="0.189" />
         <entry key="..\:/Users/toanq/OneDrive/Desktop/Android/week2exercise/app/src/main/res/drawable/custom_image_circle.xml" value="0.189" />
         <entry key="..\:/Users/toanq/OneDrive/Desktop/Android/week2exercise/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.189" />
@@ -15,14 +18,14 @@
         <entry key="..\:/Users/toanq/OneDrive/Desktop/Android/week2exercise/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/toanq/OneDrive/Desktop/Android/week2exercise/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
         <entry key="..\:/Users/toanq/OneDrive/Desktop/Android/week2exercise/app/src/main/res/layout/dialog_profile.xml" value="0.264" />
-        <entry key="..\:/Kotlin/BT/Tuan2/week2exercise/app/src/main/res/layout/activity_onboarding_one.xml" value="0.176" />
-        <entry key="..\:/Kotlin/BT/Tuan2/week2exercise/app/src/main/res/layout/activity_onboarding_three.xml" value="0.264" />
-        <entry key="..\:/Kotlin/BT/Tuan2/week2exercise/app/src/main/res/layout/activity_onboarding_two.xml" value="0.2" />
         <entry key="..\:/hoc/lap_trinh_di_dong/baitap/sources/week2exercise/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/hoc/lap_trinh_di_dong/baitap/sources/week2exercise/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/hoc/lap_trinh_di_dong/baitap/sources/week2exercise/app/src/main/res/layout/activity_onboarding_one.xml" value="0.25" />
         <entry key="..\:/hoc/lap_trinh_di_dong/baitap/sources/week2exercise/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/hoc/lap_trinh_di_dong/baitap/sources/week2exercise/app/src/main/res/layout/activity_welcome.xml" value="0.264" />
+        <entry key="..\:/monlaptrinhapp/project/week3exercise/app/src/main/res/layout/activity_login.xml" value="0.18981481481481483" />
+        <entry key="..\:/monlaptrinhapp/project/week3exercise/app/src/main/res/layout/activity_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/monlaptrinhapp/project/week3exercise/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

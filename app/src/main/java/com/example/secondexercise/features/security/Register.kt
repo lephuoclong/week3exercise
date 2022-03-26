@@ -8,44 +8,62 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.secondexercise.databinding.ActivityRegisterBinding
 import com.example.secondexercise.features.profile.Profile
+import com.example.secondexercise.models.User
+import com.example.secondexercise.viewmodels.RegisterViewModel
+import kotlin.properties.Delegates
 
 
 class Register : AppCompatActivity() {
-    private var editTextFullname :EditText?=null
-    private var editTextEmail :EditText?=null
-    private var editTextPassword :EditText?=null
-    private var imageViewVisible:ImageView?=null
-    private var btnSignUp:Button?=null
-    private var btnComeBackWelcome:Button?=null
-    private var containerLayout:ConstraintLayout?=null
-    private var showPass = false
+//    private var editTextFullname :EditText?=null
+//    private var editTextEmail :EditText?=null
+//    private var editTextPassword :EditText?=null
+//    private var imageViewVisible:ImageView?=null
+//    private var btnSignUp:Button?=null
+//    private var btnComeBackWelcome:Button?=null
+//    private var containerLayout:ConstraintLayout?=null
+    private lateinit var binding:ActivityRegisterBinding
+    private lateinit var viewModel:RegisterViewModel
+    private var error:String=""
+    private var showPass:Boolean=false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         supportActionBar?.hide()
-        setContentView(R.layout.activity_register)
+        //setContentView(R.layout.activity_register)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
 
-        initializeWidget()
 
-        imageViewVisible?.setOnClickListener {
+        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
+
+        //initializeWidget()
+
+        viewModel.errorToast.observe(this, Observer {
+            error = it
+        })
+        viewModel.showPass.observe(this, Observer {
+            showPass = it
+        })
+
+        binding.imageViewShowHidePassword.setOnClickListener {
             onClickShowPass()
         }
 
-        btnSignUp?.setOnClickListener {
+        binding.buttonSignUp.setOnClickListener {
             goToVerifyActivity()
         }
 
-        btnComeBackWelcome?.setOnClickListener {
+        binding.btnComeBackWelcome.setOnClickListener {
             finishActivity()
         }
 
-        containerLayout?.setOnTouchListener { v, event ->
+        binding.containerLayout.setOnTouchListener { v, event ->
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
@@ -54,57 +72,44 @@ class Register : AppCompatActivity() {
     }
 
     private fun finishActivity() {
-        var intent = Intent(this@Register, Login::class.java)
-        this.finish();
-        startActivity(intent);
+        val intent = Intent(this@Register, Login::class.java)
+        this.finish()
+        startActivity(intent)
     }
 
     private fun goToVerifyActivity(){
-        val fullName = editTextFullname?.text.toString().trim() == "exitsUser"
-        val email = editTextEmail?.text.toString().trim() == "example@gmail.com"
-        val password = editTextPassword?.text.toString().trim() == "123123"
-
-        if (fullName){
-            Toast.makeText(this@Register, "Username is exits!", Toast.LENGTH_SHORT).show()
-        }
-
-        if (email) {
-            Toast.makeText(this@Register, "Email is exits!", Toast.LENGTH_SHORT).show()
-        }
-
-        if (password){
-            Toast.makeText(this@Register, "You need an other strong password!", Toast.LENGTH_SHORT).show()
-        }
-
-        if( !fullName && !email && !password){
+        val fullName = binding.editTextFullnameSignup.text.toString().trim()
+        val email = binding.editTextEmailSignup.text.toString().trim()
+        val password = binding.editTextPasswordSignUp.text.toString().trim()
+        val user = User(fullName, email, password)
+        val success = viewModel.doSignUp(user)
+        if(success){
             Toast.makeText(this@Register, "Sign up success!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@Register, Profile::class.java)
+            val intent = Intent(this@Register, Login::class.java)
             startActivity(intent)
-
+        }else{
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
         }
-
-
     }
     private fun onClickShowPass() {
+        viewModel.doShowHidePassword()
         if(showPass){
-            showPass=false
-            editTextPassword?.transformationMethod=PasswordTransformationMethod.getInstance()
-            imageViewVisible?.setImageResource(R.drawable.ic_visibility)
+            binding.editTextPasswordSignUp.transformationMethod=PasswordTransformationMethod.getInstance()
+            binding.imageViewShowHidePassword.setImageResource(R.drawable.ic_visibility)
         }else{
-            showPass=true
-            editTextPassword?.transformationMethod=HideReturnsTransformationMethod.getInstance()
-            imageViewVisible?.setImageResource(R.drawable.ic_visibility_off)
+            binding.editTextPasswordSignUp.transformationMethod=HideReturnsTransformationMethod.getInstance()
+            binding.imageViewShowHidePassword.setImageResource(R.drawable.ic_visibility_off)
         }
     }
-    private fun initializeWidget(){
-        editTextFullname = findViewById(R.id.editTextFullnameSignup)
-        editTextEmail = findViewById(R.id.editTextEmailSignup)
-        editTextPassword = findViewById(R.id.editTextPasswordSignUp)
-        imageViewVisible = findViewById(R.id.imageViewShowHidePassword)
-        btnSignUp = findViewById(R.id.buttonSignUp)
-        btnComeBackWelcome = findViewById(R.id.btnComeBackWelcome)
-        containerLayout = findViewById(R.id.containerLayout)
-    }
+//    private fun initializeWidget(){
+//        editTextFullname = findViewById(R.id.editTextFullnameSignup)
+//        editTextEmail = findViewById(R.id.editTextEmailSignup)
+//        editTextPassword = findViewById(R.id.editTextPasswordSignUp)
+//        imageViewVisible = findViewById(R.id.imageViewShowHidePassword)
+//        btnSignUp = findViewById(R.id.buttonSignUp)
+//        btnComeBackWelcome = findViewById(R.id.btnComeBackWelcome)
+//        containerLayout = findViewById(R.id.containerLayout)
+//    }
 }
 
 
