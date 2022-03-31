@@ -76,39 +76,7 @@ class Register : AppCompatActivity() {
         this.finish()
         startActivity(intent)
     }
-JSON data = "[{
-    Id: 1,
-    Name: "Món Việt",
-    NameEn: null,
-    ASCIIName: null,
-    DetailUrl: "/ho-chi-minh/dia-diem-phong-cach-viet-nam",
-},{
-    Id: 1,
-    Name: "Món Việt",
-    NameEn: null,
-    ASCIIName: null,
-    DetailUrl: "/ho-chi-minh/dia-diem-phong-cach-viet-nam",
-},{
-    Id: 1,
-    Name: "Món Việt",
-    NameEn: null,
-    ASCIIName: null,
-    DetailUrl: "/ho-chi-minh/dia-diem-phong-cach-viet-nam",
-},{
-    Id: 1,
-    Name: "Món Việt",
-    NameEn: null,
-    ASCIIName: null,
-    DetailUrl: "/ho-chi-minh/dia-diem-phong-cach-viet-nam",
-}]"
 
-JSon.map()
-list<Res> res=[]
-while(data){
-    var  item=new Res();
-    res.add(item)
-}
-return
     private fun goToVerifyActivity(){
         val fullName = binding.editTextFullnameSignup.text.toString().trim()
         val email = binding.editTextEmailSignup.text.toString().trim()
